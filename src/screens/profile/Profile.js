@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Header from '../../common/header/Header';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from "@material-ui/core/Avatar";
+import Container from "@material-ui/core/Container";
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
+import './Profile.css'
 
 
 const styles = theme => ({
@@ -14,11 +18,22 @@ bigAvatar: {
     display: 'flex'
 
 },
+large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+},
 
 });
 
 class Profile extends Component {
-    state = {  }
+    state = { 
+        username: "urmila88",
+        posts: "2",
+        follows: "3",
+        followedBy: "2",
+        fullName: "Urmila Unni",
+
+     }
 
     componentWillMount() {
 
@@ -60,17 +75,30 @@ class Profile extends Component {
         const { classes } = this.props;
         return ( 
             <div>
-
-           
-            <div>
                 <Header />
-            </div>
-            <div className="col-left">
-                                    {<Avatar aria-label="recipe" className={classes.bigavatar}>
-                   <img src={require('./masha.jpeg')} width="50" height="50"></img>
-                </Avatar>}
-                                </div>
-
+                <div>
+                <div className="profileInfoSection">
+                <Avatar className={classes.large}>
+                  <img
+                    src={require("./masha.jpeg")}
+                    
+                    alt="logged in user profile pic"
+                  ></img>
+                </Avatar>
+                <div className="right">
+                <span className="username">{this.state.username}</span>
+                <span className="userInfo"><span className="infoTabs">Posts: {this.state.posts}</span>
+                <span className="infoTabs">Follows: {this.state.follows}</span>
+                <span className="infoTabs">Followed By: {this.state.followedBy}</span></span>
+                <p className="userFullName">{this.state.fullName}
+                <span className="editIcon">
+                     <Fab color="secondary" aria-label="edit" className={classes.fab}>
+                        <EditIcon onClick={this.openModalHandler} />
+                    </Fab>
+                </span></p>
+                </div>
+                </div>
+                </div>
             </div>
          );
     }
