@@ -6,11 +6,10 @@
 }
 
 .username {
-    margin-left: 30px;
-    margin-top: 20px;
+    
     font-size: 20px;
     font-weight: 500;
-    margin-bottom: 5px;
+   
 }
 
 .right{
@@ -18,15 +17,6 @@
     flex-direction: column;
 }
 
-.userInfo{
-    margin-left: 30px;
-   padding: 0px;
-  margin-top: 0px;      
-}
-
-.infoTabs{
-    margin-right: 60px;
-}
 
 .userFullName{
     margin-left: 30px;
@@ -132,4 +122,19 @@
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 10px;
+}
+
+.avatar {
+   
+        vertical-align: middle;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 35%;
+     
+        
+}
+
+.userdetails {
+    font-size: 12;
 }
