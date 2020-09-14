@@ -92,7 +92,7 @@ class Header extends Component {
             ""
           )}
 
-          {this.props.loggedIn === "true" ? (
+         
             <span>
               <IconButton
                 className="iconBtn"
@@ -150,9 +150,7 @@ class Header extends Component {
                 </div>
               </Menu>
             </span>
-          ) : (
-            " "
-          )}
+       
         </header>
         <br />
       </div>
