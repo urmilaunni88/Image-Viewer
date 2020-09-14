@@ -37,6 +37,7 @@ class Profile extends Component {
     followedBy: "2",
     fullName: "Urmila Unni",
     modalIsOpen: false,
+    changedFullName: "",
   };
 
   componentWillMount() {
@@ -78,6 +79,20 @@ class Profile extends Component {
   openModalHandler = () => {
     this.setState({ modalIsOpen: true });
   };
+
+  updateFullNameHandler = () => {
+    this.state.changedFullName === "" ? this.setState({reqFullName:"dispBlock"}): this.setState({reqFullName:"dispNone"});
+    this.setState({fullName: this.state.changedFullName});
+    this.closeModalHandler();
+  }
+
+  closeModalHandler = () => {
+    this.setState({modalIsOpen: false});
+  }
+
+  onfullNameChangeHandler = (event) => {
+    this.setState({changedFullName: event.target.value});
+  }
 
   render() {
     const { classes } = this.props;
