@@ -16,10 +16,23 @@ import Typography from "@material-ui/core/Typography";
 import GridList from "@material-ui/core/GridList";
 import { GridListTile } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
+import SvgIcon from "@material-ui/core/SvgIcon";
 
 const styles = (theme) => ({});
+
+function FavoriteBorderIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path
+        d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 
+      2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 
+      5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 
+      5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"
+      />
+    </SvgIcon>
+  );
+}
 
 const TabContainer = function (props) {
   return (
@@ -98,6 +111,20 @@ class Profile extends Component {
 
   render() {
     const { classes } = this.props;
+    const tiledata = [
+      {
+        img: "masha.jpeg",
+        title: "Life Quotes",
+        author: "urmila88",
+        date: "10/12/2019 12:23:45",
+      },
+      {
+        img: "life is your cresation.jpeg",
+        title: "Life Quotes",
+        author: "urmila88",
+        date: "10/12/2019 12:23:45",
+      },
+    ];
     return (
       <div>
         <Header />
@@ -161,68 +188,33 @@ class Profile extends Component {
 
         <div className="flex-container">
           <div className="imagePosts">
-            <GridList
-              cellHeight={350}
-              cols={3}
-              className={classes.gridListMain}
+          <GridList
+          component="div"
+          cellHeight={"auto"}
+          cols={3}
+          className="gridlistmain"
+        >
+          {tiledata.map((tile) => (
+            <GridListTile
+              component="div"
+              className="user-image-grid-item"
+              cols={tile.cols}
+              rows={tile.rows}
+              key={tile.img}
             >
-              <GridListTile className="user-image-grid-item">
-                <div>
-                  <Card className="cardstyle">
-                    <CardHeader
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          <img
-                            src={require("../../assets/masha.jpeg")}
-                            width="50"
-                            height="50"
-                          ></img>
-                        </Avatar>
-                      }
-                      title="urmila88"
-                      subheader="10/12/2019 12:23:45"
-                    />
-                    <CardContent>
-                      <img
-                        src={require("../../assets/life is your cresation.jpeg")}
-                        width="500"
-                        height="400"
-                      ></img>
-                      <hr className={classes.hr} />
-                      <h4 className="captionText">{this.state.hashtag1}</h4>
-                    </CardContent>
-                  </Card>
-                </div>
-              </GridListTile>
-              <GridListTile className="user-image-grid-item">
-                <div>
-                  <Card className="cardstyle">
-                    <CardHeader
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          <img
-                            src={require("../../assets/masha.jpeg")}
-                            width="50"
-                            height="50"
-                          ></img>
-                        </Avatar>
-                      }
-                      title="urmila88"
-                      subheader="10/12/2019 12:23:45"
-                    />
-                    <CardContent>
-                      <img
-                        src={require("../../assets/waterfall.jpg")}
-                        width="500"
-                        height="400"
-                      ></img>
-                      <hr className={classes.hr} />
-                      <h4 className="captionText">{this.state.hashtag2}</h4>
-                    </CardContent>
-                  </Card>
-                </div>
-              </GridListTile>
-            </GridList>
+              <Card className="cardstyle">
+                
+                <CardContent>
+                  <img
+                    src={require("../../assets/" + tile.img)}
+                    alt={tile.title}
+                  />
+                 
+                </CardContent>
+              </Card>
+            </GridListTile>
+          ))}
+        </GridList>
           </div>
         </div>
       </div>
