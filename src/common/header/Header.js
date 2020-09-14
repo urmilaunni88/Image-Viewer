@@ -12,18 +12,18 @@ import ReactDOM from "react-dom";
 import { Redirect } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import { MenuList, Divider } from "@material-ui/core";
-import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
+import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+import AppBar from "@material-ui/core/AppBar";
+import Typography from "@material-ui/core/Typography";
 
-
-const styles = (theme => ({
+const styles = (theme) => ({
   menuList: {
     width: 150,
     padding: 0,
     marginLeft: 7,
   },
-}))
+});
 
 class Header extends Component {
   constructor() {
@@ -92,33 +92,65 @@ class Header extends Component {
             ""
           )}
 
-         
-            <span>
-              <IconButton
-                className="iconBtn"
-                size="medium"
-                onClick={(event) => this.onProfileIconClickHandler(event)}
-              >
-                <Avatar className="avatar">
-                  <img
-                    src={require("./masha.jpeg")}
-                    className="profilePic"
-                    alt="logged in user profile pic"
-                  ></img>
-                </Avatar>
-              </IconButton>
-              <Menu id="menu-appbar" 
-                 
-                  
+          <span>
+            <IconButton
+              className="iconBtn"
+              size="medium"
+              onClick={(event) => this.onProfileIconClickHandler(event)}
+            >
+              <Avatar className="avatar">
+                <img
+                  src={require("../../assets/masha.jpeg")}
+                  className="profilePic"
+                  alt="logged in user profile pic"
+                ></img>
+              </Avatar>
+            </IconButton>
 
-                            >
-                                <Link to='/profile'>
-                                    <MenuItem >My Account</MenuItem></Link><hr />
-                                <Link to='/'>
-                                    <MenuItem onClick={this.logoutHandler}>Logout</MenuItem></Link>
-                            </Menu>
-            </span>
-       
+            <Menu
+              className="simple-menu"
+              elevation={0}
+              getContentAnchorEl={null}
+              anchorEl={this.state.anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+              keepMounted
+              open={Boolean(this.state.anchorEl)}
+              onClose={this.handleClose}
+            >
+              <div className={classes.bg}>
+              
+                  <div>
+                    {" "}
+                    <MenuItem
+                      onClose={this.handleClose}
+                      onClick={this.profilePageHandler}
+                    >
+                      <Link to={"/profile"} loggedin="true">
+                        My Account
+                      </Link>
+                    </MenuItem>
+                    <hr />{" "}
+                  </div>
+                
+
+                <MenuItem
+                  onClose={this.handleClose}
+                  onClick={this.LogoutHandler}
+                >
+                  <Link to={"/"} loggedin="false">
+                    Logout
+                  </Link>
+                </MenuItem>
+              </div>
+            </Menu>
+          </span>
         </header>
         <br />
       </div>

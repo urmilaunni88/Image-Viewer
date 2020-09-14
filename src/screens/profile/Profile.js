@@ -102,7 +102,7 @@ class Profile extends Component {
 
         <img
           className="avatar"
-          src={require("./masha.jpeg")}
+          src={require("../../assets/masha.jpeg")}
           alt="logged in user profile pic"
         ></img>
 
@@ -164,33 +164,7 @@ class Profile extends Component {
               cols={3}
               className={classes.gridListMain}
             >
-              <GridListTile className="user-image-grid-item">
-                <Card className="cardstyle">
-                  <CardHeader
-                    avatar={
-                      <Avatar aria-label="recipe" className={classes.avatar}>
-                        <img
-                          src={require("./masha.jpeg")}
-                          width="50"
-                          height="50"
-                          margin="15"
-                        ></img>
-                      </Avatar>
-                    }
-                    title="urmila88"
-                    subheader="10/12/2019 12:23:45"
-                  />
-                  <CardContent>
-                    <img
-                      src={require("./Beautiful-YourSelf-Quotes.jpg")}
-                      width="500"
-                      height="400"
-                    ></img>
-                    <hr className={classes.hr} />
-                    <h4 className="captionText">{this.state.hashtags}</h4>
-                  </CardContent>
-                </Card>
-              </GridListTile>
+              
               <GridListTile className="user-image-grid-item">
                 <div>
                   <Card className="cardstyle">
@@ -198,7 +172,7 @@ class Profile extends Component {
                       avatar={
                         <Avatar aria-label="recipe" className={classes.avatar}>
                           <img
-                            src={require("./masha.jpeg")}
+                            src={require("../../assets/masha.jpeg")}
                             width="50"
                             height="50"
                           ></img>
@@ -209,7 +183,7 @@ class Profile extends Component {
                     />
                     <CardContent>
                       <img
-                        src={require("./life is your cresation.jpeg")}
+                        src={require("../../assets/life is your cresation.jpeg")}
                         width="500"
                         height="400"
                       ></img>
@@ -226,7 +200,7 @@ class Profile extends Component {
                       avatar={
                         <Avatar aria-label="recipe" className={classes.avatar}>
                           <img
-                            src={require("./masha.jpeg")}
+                            src={require("../../assets/masha.jpeg")}
                             width="50"
                             height="50"
                           ></img>
@@ -237,7 +211,7 @@ class Profile extends Component {
                     />
                     <CardContent>
                       <img
-                        src={require("./waterfall.jpg")}
+                        src={require("../../assets/waterfall.jpg")}
                         width="500"
                         height="400"
                       ></img>

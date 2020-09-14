@@ -75,9 +75,15 @@
     position: absolute;
     background-color: grey;
     color: black;
-   
+    padding-top: 10px;
 }
 
 .menuList{
     width: 200px;
+}
+
+.horizontal-rule{
+    width:80px;
+    height:0.4px;
+    color:black;
 }
