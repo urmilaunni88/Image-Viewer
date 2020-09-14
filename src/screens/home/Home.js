@@ -188,53 +188,6 @@ onClickAddBtn = () => {
         <GridList className="gridlistmain" cellHeight='auto' cols={2}>
         
          
-          <div>
-            <GridListTile className="user-image-grid-item">
-          <Card className="cardstyle">
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                     <img src={require('./masha.jpeg')} width="50" height="50" margin="15"></img>
-                </Avatar>
-              }
-              title="urmila88"
-              subheader="10/12/2019 12:23:45"
-            />
-            <CardContent>
-            <img src={require('./Beautiful-YourSelf-Quotes.jpg')} width="500" height="400"></img>
-              <hr className={classes.hr}/>
-              <h4 className="captionText">{this.state.hashtags}</h4>
-              <div className="likes">
-              <button className="button"
-                onClick={this.incrementMe}>
-                  <FavoriteBorderIcon/>
-                 
-
-              </button>
-             
-              {this.state.count} likes
-              </div>
-              <FormControl className="formcontrol">
-                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                <Input id="imagecomment" type="text" onChange={this.imageCommentOnChangeChangeHandler} />
-                
-              </FormControl>
-              <Button
-              id="addedcomment"
-              variant="contained"
-              color="primary"
-              onClick={this.addCommentOnClickHandler}
-            >Add</Button>
-            </CardContent>
-            
-
-            
-              
-            
-          </Card>
-          </GridListTile>
-         
-          </div>
           <GridListTile className="user-image-grid-item"> 
          
         
@@ -243,14 +196,14 @@ onClickAddBtn = () => {
             <CardHeader
               avatar={
                 <Avatar aria-label="recipe" className={classes.avatar}>
-                   <img src={require('./masha.jpeg')} width="50" height="50"></img>
+                   <img src={require('../../assets/masha.jpeg')} width="50" height="50"></img>
                 </Avatar>
               }
               title="urmila88"
               subheader="10/12/2019 12:23:45"
             />
             <CardContent>
-            <img src={require('./life is your cresation.jpeg')} width="500" height="400"></img>
+            <img src={require('../../assets/life is your cresation.jpeg')} width="500" height="400"></img>
               <hr className={classes.hr}/>
               <h4 className="captionText">{this.state.hashtag1}</h4>
               <div className="likes">
@@ -291,14 +244,14 @@ onClickAddBtn = () => {
             <CardHeader
               avatar={
                 <Avatar aria-label="recipe" className={classes.avatar}>
-                   <img src={require('./masha.jpeg')} width="50" height="50"></img>
+                   <img src={require('../../assets/masha.jpeg')} width="50" height="50"></img>
                 </Avatar>
               }
               title="urmila88"
               subheader="10/12/2019 12:23:45"
             />
             <CardContent>
-            <img src={require('./waterfall.jpg')} width="500" height="400"></img>
+            <img src={require('../../assets/waterfall.jpg')} width="500" height="400"></img>
               <hr className={classes.hr}/>
               <h4 className="captionText">{this.state.hashtag2}</h4>
               <div className="likes">
