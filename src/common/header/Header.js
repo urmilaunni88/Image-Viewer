@@ -92,65 +92,67 @@ class Header extends Component {
             ""
           )}
 
-          <span>
-            <IconButton
-              className="iconBtn"
-              size="medium"
-              onClick={(event) => this.onProfileIconClickHandler(event)}
-            >
-              <Avatar className="avatar">
-                <img
-                  src={require("../../assets/masha.jpeg")}
-                  className="profilePic"
-                  alt="logged in user profile pic"
-                ></img>
-              </Avatar>
-            </IconButton>
+          {this.props.loggedIn === "true" ? (
+            <span>
+              <IconButton
+                className="iconBtn"
+                size="medium"
+                onClick={(event) => this.onProfileIconClickHandler(event)}
+              >
+                <Avatar className="avatar">
+                  <img
+                    src={require("../../assets/masha.jpeg")}
+                    className="profilePic"
+                    alt="logged in user profile pic"
+                  ></img>
+                </Avatar>
+              </IconButton>
 
-            <Menu
-              className="simple-menu"
-              elevation={0}
-              getContentAnchorEl={null}
-              anchorEl={this.state.anchorEl}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-              keepMounted
-              open={Boolean(this.state.anchorEl)}
-              onClose={this.handleClose}
-            >
-              <div className={classes.bg}>
-              
+              <Menu
+                className="simple-menu"
+                elevation={0}
+                getContentAnchorEl={null}
+                anchorEl={this.state.anchorEl}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+                keepMounted
+                open={Boolean(this.state.anchorEl)}
+                onClose={this.handleClose}
+              >
+                <div className={classes.bg}>
                   <div>
                     {" "}
                     <MenuItem
                       onClose={this.handleClose}
                       onClick={this.profilePageHandler}
                     >
-                      <Link to={"/profile"} loggedin="true">
+                      <Link to={"/profile"} loggedIn="true">
                         My Account
                       </Link>
                     </MenuItem>
                     <hr />{" "}
                   </div>
-                
 
-                <MenuItem
-                  onClose={this.handleClose}
-                  onClick={this.LogoutHandler}
-                >
-                  <Link to={"/"} loggedin="false">
-                    Logout
-                  </Link>
-                </MenuItem>
-              </div>
-            </Menu>
-          </span>
+                  <MenuItem
+                    onClose={this.handleClose}
+                    onClick={this.LogoutHandler}
+                  >
+                    <Link to={"/"} loggedIn="false">
+                      Logout
+                    </Link>
+                  </MenuItem>
+                </div>
+              </Menu>
+            </span>
+          ) : (
+            " "
+          )}
         </header>
         <br />
       </div>

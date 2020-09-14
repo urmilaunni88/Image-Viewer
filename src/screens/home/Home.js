@@ -19,6 +19,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from '@material-ui/core/Input';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import { GridListTileBar } from '@material-ui/core';
 
 import ShareIcon from "@material-ui/icons/Share";
 import { findRenderedDOMComponentWithTag } from "react-dom/test-utils";
@@ -51,11 +52,23 @@ input: {
     display: 'none',
 },
 hr: {
-    width: 460,
+    width: 200,
  },
  icon: {
   margin: theme.spacing(1),
   fontSize: 32,
+},
+root1: {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  overflow: 'hidden',
+  backgroundColor: theme.palette.background.paper,
+},
+gridList: {
+  width: 2000,
+  height: 320,
+  
 },
 
 }));
@@ -179,119 +192,86 @@ onClickAddBtn = () => {
 
   render() {
     const { classes } = this.props;
+    const tiledata = [
+      {
+        img: 'masha.jpeg',
+        title: "Life Quotes",
+        author: "urmila88",
+        date: "10/12/2019 12:23:45",
+      },
+      {
+        img: 'life is your cresation.jpeg',
+        title: "Life Quotes",
+        author: "urmila88",
+        date: "10/12/2019 12:23:45",
+      },
+      
+
+    ]
     return (
-      <div>
+
+      
+
+
+      <div className={useStyles.root1}>
         
         <Header showSearchBox="true" />
         <br />
-        
-        <GridList className="gridlistmain" cellHeight='auto' cols={2}>
-        
-         
-          <GridListTile className="user-image-grid-item"> 
-         
-        
-        <div>
-        <Card className="cardstyle">
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                   <img src={require('../../assets/masha.jpeg')} width="50" height="50"></img>
-                </Avatar>
-              }
-              title="urmila88"
-              subheader="10/12/2019 12:23:45"
-            />
-            <CardContent>
-            <img src={require('../../assets/life is your cresation.jpeg')} width="500" height="400"></img>
-              <hr className={classes.hr}/>
-              <h4 className="captionText">{this.state.hashtag1}</h4>
-              <div className="likes">
-              <button className="button"
-                onClick={this.incrementMe}>
-                  <FavoriteBorderIcon/>
-                 
 
-              </button>
+      
+      <GridList component='div' cellHeight={"auto"} cols={3} className="gridlistmain">
+        {tiledata.map(tile => (
+          <GridListTile component='div' className="user-image-grid-item" cols={tile.cols} rows={tile.rows} key={tile.img}>
+               <Card className="cardstyle">
+               <CardHeader
+                 avatar={
+                  <Avatar aria-label="recipe" className={classes.avatar}>
+                    <img src={require('../../assets/masha.jpeg')} width="50" height="50"></img>
+                  </Avatar>
+                 }
+                 title={tile.title}
+                 subtitle={tile.author}
+                 />
+                 <CardContent>
+                    <img src={require('../../assets/'+tile.img)} alt={tile.title} />
+                    <hr className={classes.hr}/>
+                    <h4 className="captionText">{this.state.hashtag1}</h4>
+                    <div className="likes">
+                    <button className="button"
+                        onClick={this.incrementMe}>
+                        <FavoriteBorderIcon/>
+                    </button>
              
-              {this.state.count} likes
-              </div>
-              <FormControl className="formcontrol">
-                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                <Input id="imagecomment" type="text" onChange={this.imageCommentOnChangeChangeHandler} />
-                
-              </FormControl>
-              <Button
-              id="addedcomment"
-              variant="contained"
-              color="primary"
-              onClick={this.addCommentOnClickHandler}
-            >Add</Button>
-            </CardContent>
-            
+                    {this.state.count} likes
+                    </div>
+                  <FormControl className="formcontrol">
+                  <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                  <Input id="imagecomment" type="text" onChange={this.imageCommentOnChangeChangeHandler} />
+               
+                    </FormControl>
+                  <Button
+                      id="addedcomment"
+                      variant="contained"
+                      color="primary"
+                      onClick={this.addCommentOnClickHandler}
+                  >Add</Button>
+                </CardContent>
+                </Card>
 
-            
-              
-            
-          </Card>
-         
-          </div>
-          </GridListTile>
-         <GridListTile className="user-image-grid-item">
-       
-        <div>
-        <Card className="cardstyle">
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                   <img src={require('../../assets/masha.jpeg')} width="50" height="50"></img>
-                </Avatar>
-              }
-              title="urmila88"
-              subheader="10/12/2019 12:23:45"
-            />
-            <CardContent>
-            <img src={require('../../assets/waterfall.jpg')} width="500" height="400"></img>
-              <hr className={classes.hr}/>
-              <h4 className="captionText">{this.state.hashtag2}</h4>
-              <div className="likes">
-              <button className="button"
-                onClick={this.incrementMe}>
-                  <FavoriteBorderIcon/>
-                 
-
-              </button>
-             
-              {this.state.count} likes
-              </div>
-              <FormControl className="formcontrol">
-                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                <Input id="imagecomment" 
-                       type="text" 
-                       comment={this.state.addcomment}
-                       onChange={(event) => this.onCommentChangeHandler(event)}
-                        />
-                
-              </FormControl>
-              <Button
-              id="addedcomment"
-              variant="contained"
-              color="primary"
-             onClick={this.onClickAddBtn}
-            >Add</Button>
            
-            </CardContent>
-            
+             
+           
+         
+                 
 
             
-              
-            
-          </Card>
-          </div>
           </GridListTile>
-          </GridList>
-        
-      </div>
+        ))}
+      </GridList>
+    </div>
+
+
+     
     );
   }
 }
