@@ -81,18 +81,20 @@ class Profile extends Component {
   };
 
   updateFullNameHandler = () => {
-    this.state.changedFullName === "" ? this.setState({reqFullName:"dispBlock"}): this.setState({reqFullName:"dispNone"});
-    this.setState({fullName: this.state.changedFullName});
+    this.state.changedFullName === ""
+      ? this.setState({ reqFullName: "dispBlock" })
+      : this.setState({ reqFullName: "dispNone" });
+    this.setState({ fullName: this.state.changedFullName });
     this.closeModalHandler();
-  }
+  };
 
   closeModalHandler = () => {
-    this.setState({modalIsOpen: false});
-  }
+    this.setState({ modalIsOpen: false });
+  };
 
   onfullNameChangeHandler = (event) => {
-    this.setState({changedFullName: event.target.value});
-  }
+    this.setState({ changedFullName: event.target.value });
+  };
 
   render() {
     const { classes } = this.props;
@@ -164,7 +166,6 @@ class Profile extends Component {
               cols={3}
               className={classes.gridListMain}
             >
-              
               <GridListTile className="user-image-grid-item">
                 <div>
                   <Card className="cardstyle">
