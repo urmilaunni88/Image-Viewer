@@ -1,43 +1,46 @@
-import React, { Component } from 'react';
-import Header from '../../common/header/Header';
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from "react";
+import Header from "../../common/header/Header";
+import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Container from "@material-ui/core/Container";
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
-import './Profile.css'
+import Fab from "@material-ui/core/Fab";
+import EditIcon from "@material-ui/icons/Edit";
+import "./Profile.css";
+import Modal from "react-modal";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Typography from "@material-ui/core/Typography";
+import GridList from "@material-ui/core/GridList";
+import { GridListTile } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
 
+const styles = (theme) => ({});
 
-const styles = theme => ({
-
-bigAvatar: {
-    margin: '20px',
-    width: '60px',
-    height: '60px',
-    float: 'center',
-    display: 'flex'
-
-},
-large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-},
-
-});
+const TabContainer = function (props) {
+  return (
+    <Typography component="div" style={{ padding: 0, textAlign: "center" }}>
+      {props.children}
+    </Typography>
+  );
+};
 
 class Profile extends Component {
-    state = { 
-        username: "urmila88",
-        posts: "2",
-        follows: "3",
-        followedBy: "2",
-        fullName: "Urmila Unni",
+  state = {
+    username: "urmila88",
+    posts: "2",
+    follows: "3",
+    followedBy: "2",
+    fullName: "Urmila Unni",
+    modalIsOpen: false,
+  };
 
-     }
-
-    componentWillMount() {
-
-        let data = null;
+  componentWillMount() {
+    let data = null;
     let xhr = new XMLHttpRequest();
     let that = this;
     xhr.addEventListener("readystatechange", function () {
@@ -70,38 +73,171 @@ class Profile extends Component {
         "17936454466396635?fields=id,media_type,media_url,username,timestamp&access_token=IGQVJXWV9CMXYyWlVYNlVjWW93ZAy03Y08zODBHMzlVQmFmRDZA6bUZA4ck9tWnJOeDZAwdUgzTWxHempqTmRtVnhBUjlrR3JMSHl1elpjd2hncTd4NFBlTk9FSkpLdlV0NlhSSDBZAX1FMRnBfaXk5MDAweUlaWDhPVDhBeG1V"
     );
     xhrImageinfo.send(imageinfo);
-    }
-    render() { 
-        const { classes } = this.props;
-        return ( 
-            <div>
-                <Header />
+  }
+
+  openModalHandler = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <Header />
+
+        <img
+          className="avatar"
+          src={require("./masha.jpeg")}
+          alt="logged in user profile pic"
+        ></img>
+
+        <span className="username">{this.state.username}</span>
+        <div>
+          <div className="userdetails">
+            <span>Posts: {this.state.posts}</span>
+            <span>Follows: {this.state.follows}</span>
+            <span>Followed By: {this.state.followedBy}</span>
+          </div>
+          <p>
+            {this.state.fullName}
+            <span className="editIcon">
+              <Fab color="secondary" aria-label="edit" className={classes.fab}>
+                <EditIcon onClick={this.openModalHandler} />
+              </Fab>
+            </span>
+          </p>
+          <Modal
+            ariaHideApp={false}
+            isOpen={this.state.modalIsOpen}
+            contentLabel="EditIcon"
+            onRequestClose={this.closeModalHandler}
+            style={styles}
+          >
+            <h2>Edit</h2>
+            <br />
+            <TabContainer>
+              <FormControl required>
+                <InputLabel htmlFor="fullName">Full Name</InputLabel>
+                <Input
+                  id="fullName"
+                  type="text"
+                  fullName={this.state.fullName}
+                  onChange={this.onfullNameChangeHandler}
+                />
+                <FormHelperText className={this.state.reqFullName}>
+                  <span className="red">required</span>
+                </FormHelperText>
+              </FormControl>
+              <br />
+              <br />
+            </TabContainer>
+            <br />
+            <Button
+              variant="contained"
+              onClick={this.updateFullNameHandler}
+              color="primary"
+            >
+              UPDATE
+            </Button>
+          </Modal>
+        </div>
+
+        <div className="flex-container">
+          <div className="imagePosts">
+            <GridList
+              cellHeight={350}
+              cols={3}
+              className={classes.gridListMain}
+            >
+              <GridListTile className="user-image-grid-item">
+                <Card className="cardstyle">
+                  <CardHeader
+                    avatar={
+                      <Avatar aria-label="recipe" className={classes.avatar}>
+                        <img
+                          src={require("./masha.jpeg")}
+                          width="50"
+                          height="50"
+                          margin="15"
+                        ></img>
+                      </Avatar>
+                    }
+                    title="urmila88"
+                    subheader="10/12/2019 12:23:45"
+                  />
+                  <CardContent>
+                    <img
+                      src={require("./Beautiful-YourSelf-Quotes.jpg")}
+                      width="500"
+                      height="400"
+                    ></img>
+                    <hr className={classes.hr} />
+                    <h4 className="captionText">{this.state.hashtags}</h4>
+                  </CardContent>
+                </Card>
+              </GridListTile>
+              <GridListTile className="user-image-grid-item">
                 <div>
-                <div className="profileInfoSection">
-                <Avatar className={classes.large}>
-                  <img
-                    src={require("./masha.jpeg")}
-                    
-                    alt="logged in user profile pic"
-                  ></img>
-                </Avatar>
-                <div className="right">
-                <span className="username">{this.state.username}</span>
-                <span className="userInfo"><span className="infoTabs">Posts: {this.state.posts}</span>
-                <span className="infoTabs">Follows: {this.state.follows}</span>
-                <span className="infoTabs">Followed By: {this.state.followedBy}</span></span>
-                <p className="userFullName">{this.state.fullName}
-                <span className="editIcon">
-                     <Fab color="secondary" aria-label="edit" className={classes.fab}>
-                        <EditIcon onClick={this.openModalHandler} />
-                    </Fab>
-                </span></p>
+                  <Card className="cardstyle">
+                    <CardHeader
+                      avatar={
+                        <Avatar aria-label="recipe" className={classes.avatar}>
+                          <img
+                            src={require("./masha.jpeg")}
+                            width="50"
+                            height="50"
+                          ></img>
+                        </Avatar>
+                      }
+                      title="urmila88"
+                      subheader="10/12/2019 12:23:45"
+                    />
+                    <CardContent>
+                      <img
+                        src={require("./life is your cresation.jpeg")}
+                        width="500"
+                        height="400"
+                      ></img>
+                      <hr className={classes.hr} />
+                      <h4 className="captionText">{this.state.hashtag1}</h4>
+                    </CardContent>
+                  </Card>
                 </div>
+              </GridListTile>
+              <GridListTile className="user-image-grid-item">
+                <div>
+                  <Card className="cardstyle">
+                    <CardHeader
+                      avatar={
+                        <Avatar aria-label="recipe" className={classes.avatar}>
+                          <img
+                            src={require("./masha.jpeg")}
+                            width="50"
+                            height="50"
+                          ></img>
+                        </Avatar>
+                      }
+                      title="urmila88"
+                      subheader="10/12/2019 12:23:45"
+                    />
+                    <CardContent>
+                      <img
+                        src={require("./waterfall.jpg")}
+                        width="500"
+                        height="400"
+                      ></img>
+                      <hr className={classes.hr} />
+                      <h4 className="captionText">{this.state.hashtag2}</h4>
+                    </CardContent>
+                  </Card>
                 </div>
-                </div>
-            </div>
-         );
-    }
+              </GridListTile>
+            </GridList>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(Profile);
