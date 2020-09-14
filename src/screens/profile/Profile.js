@@ -106,11 +106,11 @@ class Profile extends Component {
           alt="logged in user profile pic"
         ></img>
 
-        <span className="username">{this.state.username}</span>
-        <div>
+        <span className="userFullName">{this.state.username}</span>
+        <div className="maindiv">
           <div className="userdetails">
             <span>Posts: {this.state.posts}</span>
-            <span>Follows: {this.state.follows}</span>
+            <span className="followclass">Follows: {this.state.follows}</span>
             <span>Followed By: {this.state.followedBy}</span>
           </div>
           <p>
